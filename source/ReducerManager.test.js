@@ -4,6 +4,7 @@ import React from "react";
 
 const CONNECTED_ACTION = "connected";
 const DISCONNECTED_ACTION = "disconnected";
+const RESET_ACTION = "reset";
 
 class MockConnectedComponent extends React.Component {
     render() {
@@ -16,11 +17,17 @@ class MockDiconnectedComponent extends React.Component {
     }
 }
 const STATE_NAME = "namespace";
+const store = initializeStore({});
+
+it('ReducerManager - Should have a reference to store', () => {
+    const reducerManager = createReducerManager();
+    reducerManager.dispatchUIDirect(RESET_ACTION, true);
+    expect(reducerManager.store).toEqual(store);
+});
 
 it('dispatchUI - Should only fire actions to redux if components are connected', () => {
-
-    const store = initializeStore({});
     const reducerManager = createReducerManager();
+    reducerManager.dispatchUIDirect(RESET_ACTION, true);
     injectReducer(STATE_NAME, reducerManager.createReducer());
     const connected = reducerManager.connectManager(STATE_NAME, MockConnectedComponent, [CONNECTED_ACTION]);
     const disconnected = reducerManager.connectManager(STATE_NAME, MockDiconnectedComponent, [DISCONNECTED_ACTION]);
@@ -47,8 +54,8 @@ it('dispatchUI - Should only fire actions to redux if components are connected',
 
 it('dispatchUIDirect - Should always fire actions', () => {
 
-    const store = initializeStore({});
     const reducerManager = createReducerManager();
+    reducerManager.dispatchUIDirect(RESET_ACTION, true);
     injectReducer(STATE_NAME, reducerManager.createReducer());
     const connected = reducerManager.connectManager(STATE_NAME, MockConnectedComponent, [CONNECTED_ACTION]);
     const disconnected = reducerManager.connectManager(STATE_NAME, MockDiconnectedComponent, [DISCONNECTED_ACTION]);
@@ -73,9 +80,8 @@ it('dispatchUIDirect - Should always fire actions', () => {
 });
 
 it('addReducerAction - adding reducers one by one works', () => {
-
-    const store = initializeStore({});
-    const reducerManager = createEmptyReducerManager();
+    const reducerManager = createReducerManager();
+    reducerManager.dispatchUIDirect(RESET_ACTION, true);
     reducerManager.addReducerAction(CONNECTED_ACTION, connectedReducerFunction);
     injectReducer(STATE_NAME, reducerManager.createReducer());
     reducerManager.dispatchUIDirect(CONNECTED_ACTION, true);
@@ -95,7 +101,8 @@ const createEmptyReducerManager = () => {
 const createReducerManager = () => {
     return new ReducerManager({
         [CONNECTED_ACTION]: connectedReducerFunction,
-        [DISCONNECTED_ACTION]: disconnectedReducerFunction
+        [DISCONNECTED_ACTION]: disconnectedReducerFunction,
+        [RESET_ACTION]: reset
     });
 };
 
@@ -110,5 +117,9 @@ const disconnectedReducerFunction = (state, action) => {
     return {
         ...state,
         disconnected: state.disconnected ? state.disconnected + 1 : 1
+    }
+};
+const reset = (state, action) => {
+    return {
     }
 };

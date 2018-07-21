@@ -11,22 +11,25 @@ const createReducer = asyncReducers => {
     });
 };
 
-let store = null;
 
 let reducers = {};
 
 const initializeStore = (defaultReducers) => {
+    if(store) {
+        return store;
+    }
     reducers = {
         ...reducers,
         ...defaultReducers
     };
-    store = createStore(
+    return createStore(
         createReducer(reducers),
         {},
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     );
-    return store;
 };
+
+const store = initializeStore({});
 
 const injectReducer = (key, reducer) => {
     reducers[key] = reducer;
