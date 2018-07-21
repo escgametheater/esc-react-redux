@@ -20,7 +20,10 @@ const initializeStore = (defaultReducers) => {
     }
     reducers = {
         ...reducers,
-        ...defaultReducers
+        ...defaultReducers,
+        identity: (state, action) => {
+            return state || {};
+        }
     };
     return createStore(
         createReducer(reducers),

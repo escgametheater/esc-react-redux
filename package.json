@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "@esc_games/esc-react-redux",
   "version": "1.0.2",
   "description": "EventManager and ReducerManager make feature life easier/more focused ",
