@@ -36,10 +36,6 @@ const DemoManager = new EventManager(EVENT_NAMESPACE, reducerManager);
 
 class DemoComponent extends Component {
     
-    componentDidMount() {
-        DemoManager.
-    }
-    
     render() {
         return {this.props.name};
     }
