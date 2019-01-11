@@ -1,6 +1,6 @@
 {
   "name": "@esc_games/esc-react-redux",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "EventManager and ReducerManager make feature life easier/more focused ",
   "main": "source/index.js",
   "scripts": {
@@ -71,22 +71,22 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-jest": "^23.4.0",
+    "babel-jest": "^23.6.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "fetch": "^1.1.0",
-    "jest": "^23.4.1",
-    "jsdom": "^11.11.0",
-    "raf": "^3.4.0",
-    "react": "^16.4.1",
-    "transform-runtime": "0.0.0",
-    "whatwg-fetch": "^2.0.4"
+    "jest": "^23.6.0",
+    "jsdom": "^13.1.0",
+    "raf": "^3.4.1",
+    "react": "^16.7.0",
+    "transform-runtime": "^0.0.0",
+    "whatwg-fetch": "^3.0.0"
   },
   "dependencies": {
-    "react-redux": "^5.0.7",
-    "redux": "^4.0.0"
+    "react-redux": "^6.0.0",
+    "redux": "^4.0.1"
   }
 }
