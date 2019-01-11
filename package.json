@@ -1,6 +1,6 @@
 {
   "name": "@esc_games/esc-react-redux",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "EventManager and ReducerManager make feature life easier/more focused ",
   "main": "source/index.js",
   "scripts": {
